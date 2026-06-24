@@ -28,7 +28,7 @@ h1,h2,h3,.display{font-family:"Archivo",system-ui,sans-serif;line-height:1.04;le
     radial-gradient(520px 360px at 88% -8%, var(--mint-2), transparent 62%),
     radial-gradient(460px 340px at -20% 102%, var(--mint-2), transparent 58%),
     linear-gradient(180deg,var(--mint-1),#F3FCFA 55%,#EAFBF7);
-  padding:0 18px calc(96px + env(safe-area-inset-bottom));overflow:hidden;
+  padding:0 18px calc(40px + env(safe-area-inset-bottom));overflow:hidden;
 }
 .app::before{
   content:"";position:absolute;inset:0;z-index:0;opacity:.05;pointer-events:none;
@@ -38,7 +38,14 @@ h1,h2,h3,.display{font-family:"Archivo",system-ui,sans-serif;line-height:1.04;le
 }
 .app > *{position:relative;z-index:1}
 
-.bar{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 6px}
+.backrow{display:flex;padding:calc(env(safe-area-inset-top) + 16px) 2px 0}
+.back{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);
+  color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:700;font-size:14px;
+  padding:10px 16px 10px 12px;border-radius:999px;cursor:pointer;text-decoration:none;min-height:42px;
+  box-shadow:0 6px 16px -9px rgba(10,90,102,.45);-webkit-tap-highlight-color:transparent}
+.back svg{width:17px;height:17px;display:block}
+.back:active{transform:translateY(1px)}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:14px 2px 6px}
 .logo{display:flex;align-items:center;gap:9px}
 .logo img{height:30px;width:auto;display:block}
 .pill{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);
@@ -115,19 +122,10 @@ section{padding:40px 2px}
   -webkit-mask-image:radial-gradient(circle at 90% 0,#000,transparent 62%);mask-image:radial-gradient(circle at 90% 0,#000,transparent 62%)}
 .close h2{font-size:28px;font-weight:900;color:#fff;position:relative}
 .close p{color:rgba(255,255,255,.82);margin:11px auto 22px;position:relative;font-size:15px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--bright);color:#073b42;
-  font-family:"Archivo";font-weight:800;font-size:16px;padding:15px 26px;border-radius:999px;text-decoration:none;position:relative;border:0}
-.btn .arr{transition:transform .15s ease}
-.btn:active .arr{transform:translateX(3px)}
 
 .terms{font-size:12px;color:var(--ink-soft);margin-top:26px;line-height:1.7}
 .terms b{color:var(--ink)}
 footer{text-align:center;padding:30px 0 10px;color:var(--ink-soft);font-size:12.5px}
-
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;justify-content:center;pointer-events:none}
-.dock-inner{width:100%;max-width:440px;padding:12px 18px calc(12px + env(safe-area-inset-bottom));
-  background:linear-gradient(180deg,rgba(233,251,248,0),rgba(233,251,248,.92) 38%);pointer-events:auto}
-.dock .btn{width:100%;background:var(--teal-deep);color:#fff;box-shadow:0 14px 30px -10px rgba(10,90,102,.7);font-size:17px;padding:17px}
 
 @media (max-width:360px){h1{font-size:33px}.v-rv{font-size:32px}.v-div{margin:2px 11px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -135,6 +133,13 @@ footer{text-align:center;padding:30px 0 10px;color:var(--ink-soft);font-size:12.
 </head>
 <body>
 <div class="app">
+
+  <div class="backrow">
+    <button class="back" type="button" onclick="history.back()" aria-label="Go back to the previous page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      <span>Go Back</span>
+    </button>
+  </div>
 
   <div class="bar">
     <div class="logo"><img src="https://sawa-dev-2-storage-bucket.storage.googleapis.com/profiles/qruhm3wgiyc2nrzn-d9748.png" alt="Tbay"></div>
@@ -154,7 +159,7 @@ footer{text-align:center;padding:30px 0 10px;color:var(--ink-soft);font-size:12.
       <div class="v-rewards">
         <div class="v-r"><span class="v-rl">Nigeria</span><span class="v-rv"><span>₦</span>3,000</span></div>
         <div class="v-div"></div>
-        <div class="v-r"><span class="v-rl">Ghana</span><span class="v-rv"><span>GH₵</span>25</span></div>
+        <div class="v-r"><span class="v-rl">Ghana</span><span class="v-rv"><span>GH₵</span>XX</span></div>
       </div>
       <div class="v-when">Added to your Tbay wallet in early July</div>
       <div class="v-cut"></div>
@@ -201,7 +206,6 @@ footer{text-align:center;padding:30px 0 10px;color:var(--ink-soft);font-size:12.
     <div class="close">
       <h2>Your reward week is open.</h2>
       <p>Trade 100+ Tbay points before 2 July and claim your reward — ₦3,000 in Nigeria, GH₵25 in Ghana. The window closes soon.</p>
-      <a class="btn" href="http://dl.tbay.store/"><span>Trade now</span><span class="arr">→</span></a>
     </div>
 
     <p class="terms">
@@ -211,9 +215,5 @@ footer{text-align:center;padding:30px 0 10px;color:var(--ink-soft);font-size:12.
 
   <footer>© 2026 Tbay. Trade gift cards, your way.</footer>
 </div>
-
-<div class="dock"><div class="dock-inner">
-  <a class="btn" href="http://dl.tbay.store/" id="deeplink"><span>Trade now</span><span class="arr">→</span></a>
-</div></div>
 </body>
 </html>
